@@ -7,6 +7,7 @@ import {
   Youtube,
   Mail,
   Phone,
+  Map,
 } from "lucide-react";
 
 interface FooterProps {
@@ -74,16 +75,21 @@ export function Footer({ locale }: FooterProps) {
           {/* About Column */}
           <div>
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center ">
                 {/* Replace with actual logo */}
-                <div className="text-blue-900 font-bold">EA</div>
+                {/* <Image
+                  src="/svgs/footer-logo.svg"
+                  alt="Logo"
+                  fill
+                  className="w-full h-full z-50"
+                /> */}
               </div>
               <div className="font-bold text-xl">
                 {locale === "ar"
                   ? "جمعية العطاوية"
                   : locale === "fr"
-                  ? "Association El Attaouia"
-                  : "El Attaouia Association"}
+                  ? "EA"
+                  : "EA"}
               </div>
             </div>
             <p className="text-blue-100 mb-6">
@@ -119,7 +125,7 @@ export function Footer({ locale }: FooterProps) {
                 href="#"
                 className="text-white hover:text-amber-400 transition-colors"
               >
-                <Youtube size={20} />
+                <Youtube size={25} />
                 <span className="sr-only">YouTube</span>
               </a>
             </div>
@@ -222,13 +228,14 @@ export function Footer({ locale }: FooterProps) {
                   +212 6 00 00 00 00
                 </a>
               </li>
-              <li>
+              <li className="flex items-center gap-2">
+                <Map size={18} className="text-amber-400" />
                 <address className="text-blue-100 not-italic">
                   {locale === "ar"
                     ? "العطاوية، قلعة السراغنة، المغرب"
                     : locale === "fr"
-                    ? "El Attaouia, Kelaa des Sraghna, Maroc"
-                    : "El Attaouia, Kelaa des Sraghna, Morocco"}
+                    ? "Laataouia, Kelaat Sraghna, Maroc"
+                    : "Laataouia, Kelaat Sraghna, Morocco"}
                 </address>
               </li>
             </ul>

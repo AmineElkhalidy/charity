@@ -192,11 +192,12 @@ export default function ContactPage({
                     ? "Écrivez votre message ici"
                     : "Write your message here"
                 }
+                className="h-40"
               />
             </div>
             <Button
               type="submit"
-              className="w-full sm:w-auto bg-blue-900 hover:bg-blue-800"
+              className="w-full cursor-pointer sm:w-auto text-white bg-blue-900 hover:bg-blue-800"
             >
               {
                 translations.form.send[
@@ -296,9 +297,8 @@ export default function ContactPage({
       </div>
 
       {/* Map */}
-      <div className="mt-16">
+      {/* <div className="mt-16">
         <div className="w-full h-96 bg-gray-200 rounded-lg">
-          {/* In a real application, you would integrate Google Maps or similar */}
           <div className="w-full h-full flex items-center justify-center">
             <p className="text-gray-500">
               {locale === "ar"
@@ -309,7 +309,7 @@ export default function ContactPage({
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
