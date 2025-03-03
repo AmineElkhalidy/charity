@@ -58,10 +58,11 @@ const translations = {
 };
 
 export default async function HomePage({
-  params: { locale },
+  params,
 }: {
   params: { locale: string };
 }) {
+  const locale = await params.locale;
   const posts = await client.fetch(getAllPostsQuery, { language: locale });
 
   return (

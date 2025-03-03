@@ -1,28 +1,15 @@
-import "../globals.css";
-import { Inter, Noto_Sans_Arabic } from "next/font/google";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { Providers } from "@/components/Providers";
 import { getDirection } from "@/lib/i18n/getDirection";
 import clsx from "clsx";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const notoSansArabic = Noto_Sans_Arabic({
-  subsets: ["arabic"],
-  variable: "--font-noto-sans-arabic",
-  display: "swap",
-});
-
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
   params: { locale: string };
 }) {
+  const locale = await params.locale;
   return {
     title: {
       default:
@@ -50,34 +37,40 @@ export async function generateMetadata({
   };
 }
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const locale = await params.locale;
   const direction = getDirection(locale);
 
   return (
-    <html lang={locale} dir={direction}>
-      <body
-        className={clsx(
-          inter.variable,
-          notoSansArabic.variable,
-          "min-h-screen flex flex-col",
-          {
-            "font-sans": locale !== "ar",
-            "font-arabic": locale === "ar",
-          }
-        )}
-      >
-        <Providers locale={locale}>
-          <Header locale={locale} />
-          <main className="flex-1">{children}</main>
-          <Footer locale={locale} />
-        </Providers>
-      </body>
-    </html>
+    <div
+      className={clsx("min-h-screen flex flex-col", {
+        "font-sans": locale !== "ar",
+        "font-arabic": locale === "ar",
+      })}
+      style={{
+        direction: direction, // This explicitly sets the direction
+      }}
+      lang={locale}
+    >
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            document.documentElement.lang = "${locale}";
+            document.documentElement.dir = "${direction}";
+          `,
+        }}
+      />
+      <Providers locale={locale}>
+        <Header locale={locale} />
+        <main className="flex-1">{children}</main>
+        <Footer locale={locale} />
+      </Providers>
+    </div>
   );
 }

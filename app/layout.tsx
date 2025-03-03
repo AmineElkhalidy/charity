@@ -1,4 +1,5 @@
 import "./globals.css";
+import { inter, notoSansArabic } from "./fonts";
 
 export default function RootLayout({
   children,
@@ -6,7 +7,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html className={`${inter.variable} ${notoSansArabic.variable}`}>
       <body>{children}</body>
     </html>
   );

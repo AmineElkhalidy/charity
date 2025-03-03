@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -71,8 +70,8 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        sans: ["var(--font-inter)"],
-        arabic: ["var(--font-noto-sans-arabic)"],
+        sans: ["var(--font-inter)", "sans-serif"],
+        arabic: ["var(--font-noto-sans-arabic)", "sans-serif"],
       },
     },
   },
